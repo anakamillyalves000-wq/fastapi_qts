@@ -15,17 +15,17 @@ def processar_venda(
             "total_final" : 0.0,
         }
         
-        taxa_desconto = calcular_desconto_combo(quantidade_itens, tipo_cliente)
-        valor_desconto = round(valor_bruto * taxa_desconto, 2)
-        subtotal = valor_bruto - valor_desconto
+    taxa_desconto = calcular_desconto_combo(quantidade_itens, tipo_cliente)
+    valor_desconto = round(valor_bruto * taxa_desconto, 2)
+    subtotal = valor_bruto - valor_desconto
         
-        taxa_embalagem = calcular_taxa_embalagem(levar_viagem, quantidade_itens)
-        total_final = round(subtotal + taxa_embalagem, 2)
+    taxa_embalagem = calcular_taxa_embalagem(levar_viagem, quantidade_itens)
+    total_final = round(subtotal + taxa_embalagem, 2)
         
-        return{
+    return{
             "sucesso": True,
             "valor_bruto" : round(valor_bruto, 2),
             "desconto_aplicado" : valor_desconto,
             "taxa_embalagem" : taxa_embalagem,
-            "total_final" : total_final,
+            "total_final" : total_final, 
         }
