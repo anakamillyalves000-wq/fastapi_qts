@@ -3,18 +3,16 @@ from app.credito.credito import classificar_credito
 
 
 @pytest.mark.parametrize(
-    "renda_mensal, score_credito, restrito",
+    "renda_mensal, score_credito, restrito, retorno_esperado",
     [
-        (0, "local", True, "invalido"),
-        (-1, "estadual", False, "invalido"),
-        (5, "internacional", False, "regiao invalida"),
-        (2, "local", True, "frete gratis"),
-        (3, "local", False, "frete reduzido"),
-        (3, "estadual", False, "frete padrao"),
-        (3, "nacional", False, "frete padrao"),
+        (0, 500, False, "renda invalida"),       
+        (2500, -50, False, "score invalido"),
+        (2500, 1200, False, "score invalido"),   
+        (2500, 700, True, "reprovado"),      
+        (2500, 700, False, "aprovado premium"),
     ],
 )
-def test_classificar_frete_caixa_preta(
-    peso_kg, regiao, premium, retorno_esperado
+def test_classificar_credito_caixa_preta(
+    renda_mensal, score_credito, restrito, retorno_esperado
 ):
-    assert classificar_frete(peso_kg, regiao, premium) == retorno_esperado
+    assert classificar_credito(renda_mensal, score_credito, restrito) == retorno_esperado
